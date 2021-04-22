@@ -238,11 +238,12 @@ body {
 .messages-content .single-message {
     font-size: 14px;
     font-weight: 400;
-    padding: 8px 12px 5px;
+    padding: 8px 12px 7px;
     border-radius: 10px;
     width: 45%;
     display: flex;
     flex-direction: column;
+    margin-bottom: 10px;
 }
 .messages-content .single-message.received {
     background-color: #fff;
@@ -267,5 +268,24 @@ body {
 .write-message {
     height: 65px;
     background-color: #f3eeea;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
+.write-message input {
+    padding: 10px 10px;
+    border-width: 0;
+    border-radius: 4px;
+    flex-grow: 1;
+    margin: 0 30px;
+    outline: none;
+    font-family: 'Roboto';
+}
+
+.write-message i {
+    font-size: 20px;
+    color: #6a7376;
+    cursor: pointer;
+}
