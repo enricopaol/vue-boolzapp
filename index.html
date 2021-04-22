@@ -75,7 +75,7 @@
                     <div class="contact-list">
 
                         <!-- Single Contact -->
-                        <div v-for="(contact, index) in contacts" class="single-contact" @click="showIndex(index)">
+                        <div v-for="(contact, index) in contacts" class="single-contact" @click="showIndex(index); colourContact(index)" :class="{active : contact.onFocus}">
                             <div class="user-avatar">
                                 <img :src="'img/avatar' + contact.avatar + '.jpg'" :alt="'avatar' + contact.avatar">
                             </div>

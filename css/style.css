@@ -178,6 +178,10 @@ body {
 .contact-list .single-contact:hover {
     background-color: #e9ebeb;
 }
+.contact-list .single-contact.active {
+    background-color: #e9ebeb;
+}
+
 .contact-list .single-contact .user-names-text {
     margin-left: 10px;
     font-size: 16px;
