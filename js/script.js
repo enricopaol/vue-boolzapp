@@ -89,7 +89,12 @@ var app = new Vue(
             ]
         },
         methods: {
+            // findListMessages() {
+            //     let array
+            //     this.contacst.forEach(() => {
 
+            //     })
+            // }
         }
 
     }
