@@ -6,7 +6,8 @@
 
 /* COMMON */
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    image-rendering: -webkit-optimize-contrast;
 }
 
 .app-container {
@@ -41,14 +42,28 @@ body {
     background: #555; 
 }
 
+.user-names-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: black;
+}
+
+.user-avatar {
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.user-avatar img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
 /* NAVIGATION LEFT */
 .nav-left {
     width: 350px;
     height: 100%;
-
-
-    /* Test */
-    background-color: blueviolet;
 }
 
 /* User Name */
@@ -56,6 +71,25 @@ body {
     height: 65px;
     background-color: #eaeaea;
     border-right: 1px solid #d6d6d6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+.user-name .text-avatar-container {
+    display: flex;
+    align-items: center;
+}
+.user-name .user-avatar {
+    height: 45px;
+    width: 45px;
+    margin-right: 10px;
+}
+
+.user-name-icons i {
+    cursor: pointer;
+    margin: 0 5px;
+    color: #b1b1b1;
 }
 
 /* Notifications */
