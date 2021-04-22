@@ -122,11 +122,12 @@ body {
 .receive-notifications {
     font-size: 14px;
 }
-.activate-notifications a{
+.activate-notifications a {
     font-size: 12px;
     font-weight: 400;
     color: #4f7585;
     display: block;
+    margin-top: 3px;
 }
 /* Search Chat */
 .search-chat {
@@ -192,6 +193,36 @@ body {
 .contact-profile-top {
     height: 65px;
     background-color: #eaeaea;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.contact-profile-top .current-profile-container {
+    display: flex;
+    align-items: center;
+}
+
+.current-profile-container .user-avatar {
+    height: 45px;
+    width: 45px;
+    margin-right: 10px;
+}
+
+.current-profile-container .text-container .last-acces {
+    font-size: 12px;
+     color: #b1b1b1;
+     font-weight: 400;
+     margin-top: 3px;
+}
+
+.contact-profile-top .profile-icons {
+    color: #b1b1b1;
+}
+.contact-profile-top .profile-icons i {
+    margin: 0 5px;
+    cursor: pointer;
 }
 
 /* Messages Content */
