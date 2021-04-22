@@ -75,28 +75,12 @@
                     <div class="contact-list">
 
                         <!-- Single Contact -->
-                        <div class="single-contact">
+                        <div v-for="(contact, index) in contacts" class="single-contact">
                             <div class="user-avatar">
-                                <img src="img/avatar_2.jpg" alt="avatar 2">
+                                <img :src="'img/avatar' + contact.avatar + '.jpg'" :alt="'avatar' + contact.avatar">
                             </div>
-                            <div class="user-names-text">Fabio</div>
-                        </div> 
-                        
-                        <!-- Single Contact -->
-                        <div class="single-contact">
-                            <div class="user-avatar">
-                                <img src="img/avatar_2.jpg" alt="avatar 2">
-                            </div>
-                            <div class="user-names-text">Fabio</div>
-                        </div>
-
-                        <!-- Single Contact -->
-                        <div class="single-contact">
-                            <div class="user-avatar">
-                                <img src="img/avatar_2.jpg" alt="avatar 2">
-                            </div>
-                            <div class="user-names-text">Fabio</div>
-                        </div>
+                            <div class="user-names-text">{{contact.name}}</div>
+                        </div>                                                 
         
                     </div>
                     <!-- End Of Contact List -->
