@@ -229,12 +229,13 @@ body {
 .messages-content {
     height: calc( 100% - 130px);
     background-image: url(../img/mine.jpg);
-    overflow-y: auto;
+    overflow-y: auto;    
+}
+.messages-content .messages-content-container {
     padding: 60px 70px;
     display: flex;
     flex-direction: column;
 }
-
 .messages-content .single-message {
     font-size: 14px;
     font-weight: 400;
