@@ -7,7 +7,9 @@
 /* COMMON */
 body {
     font-family: 'Roboto', sans-serif;
+    font-weight: 500;
     image-rendering: -webkit-optimize-contrast;
+    min-width: 600px;
 }
 
 .app-container {
@@ -96,8 +98,36 @@ body {
 .notifications {
     height: 75px;
     background-color: #8edafb;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
 }
 
+.bell-container {
+    height: 50px;
+    width: 50px;
+    background-color: #f3fbfe;
+    border-radius: 50%;
+    text-align: center;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.bell-container i {
+    line-height: 50px;
+    display: block;
+    font-size: 24px;
+    color: #8edafb;
+}
+
+.receive-notifications {
+    font-size: 14px;
+}
+.activate-notifications a{
+    font-size: 12px;
+    font-weight: 400;
+    color: #4f7585;
+    display: block;
+}
 /* Search Chat */
 .search-chat {
     height: 50px;
