@@ -75,7 +75,7 @@
                     <div class="contact-list">
 
                         <!-- Single Contact -->
-                        <div v-for="(contact, index) in contacts" class="single-contact">
+                        <div v-for="(contact, index) in contacts" class="single-contact" @click="showIndex(index)">
                             <div class="user-avatar">
                                 <img :src="'img/avatar' + contact.avatar + '.jpg'" :alt="'avatar' + contact.avatar">
                             </div>
@@ -96,10 +96,10 @@
                         
                         <div class="current-profile-container">
                             <div class="user-avatar">
-                                <img src="img/avatar_2.jpg" alt="">
+                                <img :src="'img/avatar' + contacts[activeContactIndex].avatar + '.jpg'" alt="">
                             </div>
                             <div class="text-container">
-                                <div class="user-names-text">Fabio</div>
+                                <div class="user-names-text">{{contacts[activeContactIndex].name}}</div>
                                 <div class="last-acces">Ultimo accesso oggi alle</div>
                             </div>                            
                         </div>
@@ -117,71 +117,19 @@
                     <div class="messages-content">                        
                         <div class="messages-content-container">
 
-                            <!-- Single Message TEST (TODO: ELIMINARE I MESSAGGI) -->
-                            <div class="single-message received">
+                            <!-- Single Message TEST (TODO: MOSTRARE MESSAGGI DIVERSI PER OGNI UTENTE CLICCATO) -->
+                            <div 
+                            v-for="message in contacts[activeContactIndex].messages" 
+                            class="single-message" 
+                            :class="{'received' : message.status == 'received', 'sent' : message.status == 'sent'}"
+                            >
                                 <div class="text-message">
-                                    La Marianna Va in Campagna
+                                    {{message.text}}
                                 </div>                            
-                                <span class="message-date">YY/DD/HHHH 10:10:40</span>
+                                <span class="message-date">{{message.date}}</span>
                             </div>
 
-                            <div class="single-message sent">
-                                <div class="text-message">
-                                    La Marianna Va in Campagna
-                                </div>                            
-                                <span class="message-date">YY/DD/HHHH 10:10:40</span>
-                            </div>
-
-                            <div class="single-message received">
-                                <div class="text-message">
-                                    La Marianna Va in Campagna
-                                </div>                            
-                                <span class="message-date">YY/DD/HHHH 10:10:40</span>
-                            </div>
-
-                            <div class="single-message sent">
-                                <div class="text-message">
-                                    La Marianna Va in Campagna
-                                </div>                            
-                                <span class="message-date">YY/DD/HHHH 10:10:40</span>
-                            </div>
-
-                            <div class="single-message received">
-                                <div class="text-message">
-                                    La Marianna Va in Campagna
-                                </div>                            
-                                <span class="message-date">YY/DD/HHHH 10:10:40</span>
-                            </div>
-
-                            <div class="single-message sent">
-                                <div class="text-message">
-                                    La Marianna Va in Campagna
-                                </div>                            
-                                <span class="message-date">YY/DD/HHHH 10:10:40</span>
-                            </div>
-
-                            <div class="single-message received">
-                                <div class="text-message">
-                                    La Marianna Va in Campagna
-                                </div>                            
-                                <span class="message-date">YY/DD/HHHH 10:10:40</span>
-                            </div>
-
-                            <div class="single-message sent">
-                                <div class="text-message">
-                                    La Marianna Va in Campagna
-                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit, sed ipsa. Cumque molestias vel, expedita, libero debitis molestiae harum alias, aspernatur temporibus animi reiciendis veritatis quaerat! Earum quam nulla nobis.
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente eos, porro placeat in laboriosam quis accusantium obcaecati voluptates nisi quod magnam! Aut provident earum iure aliquam repudiandae pariatur beatae rem.
-                                </div>                            
-                                <span class="message-date">YY/DD/HHHH 10:10:40</span>
-                            </div>
-
-                            <div class="single-message received">
-                                <div class="text-message">
-                                    La Marianna Va in Campagna
-                                </div>                            
-                                <span class="message-date">YY/DD/HHHH 10:10:40</span>
-                            </div>
+                            
 
                         </div>
                     </div>

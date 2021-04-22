@@ -2,6 +2,7 @@ var app = new Vue(
     {
         el: '#root',
         data: {
+            activeContactIndex: '0',
             contacts: [
                 {
                     name: 'Michele',
@@ -89,12 +90,9 @@ var app = new Vue(
             ]
         },
         methods: {
-            // findListMessages() {
-            //     let array
-            //     this.contacst.forEach(() => {
-
-            //     })
-            // }
+            showIndex(index) {
+                this.activeContactIndex = index;
+            }
         }
 
     }
