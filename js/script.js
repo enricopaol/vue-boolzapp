@@ -106,7 +106,17 @@ var app = new Vue(
                     });
                 }                            
                 this.newMessage = '';
+
+                // I call the function Autorespond after 1s
+                setTimeout(this.autorespond, 1000)
             },
+            autorespond() {
+                this.contacts[this.activeContactIndex].messages.push({
+                    date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+                    text: 'ok',
+                    status: 'received'
+                });
+            },                      
             // To find contacts
             findContact() {                
                 this.contacts.forEach((element) => {
@@ -168,7 +178,7 @@ var app = new Vue(
                             i--
                         }
                         return dateLastMessage;
-                    }() // <-- In this case, want to execute the function on the fly
+                    }() // <-- In this case, I want to execute the function on the fly
                     return lastMessageReceivedDate;
                 }
 
