@@ -113,7 +113,7 @@ var app = new Vue(
             autorespond() {
                 this.contacts[this.activeContactIndex].messages.push({
                     date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
-                    text: 'ok',
+                    text: 'lorem ipsum dolor sia amet baj dk ejwjsgatj jdgsfajks lorem ipsum dolor sia amet baj dk ejwjsgatj jdgsfajks lorem ipsum dolor sia amet baj dk ejwjsgatj jdgsfajks',
                     status: 'received'
                 });
             },                      
@@ -128,19 +128,21 @@ var app = new Vue(
                 })
             },
             // To Find last message for each contact
-            // contact --> the contact of who you want to find the last message
+            // index --> the index of the contact you want to find the last message
             // property --> is a String that represents which property of the object 
             //              message do you want (date, text, status)
             // return: a string representing the property of last message of that contact
-            lastMessage(contact, property) {                                               
-                let lastMex = contact.messages[contact.messages.length - 1][property];
+            lastMessage(index, property) {  
+                let thisContact = this.contacts[index]                                         
+                let lastMex = thisContact.messages[thisContact.messages.length - 1][property];
                 return lastMex;                                               
             },
             // To Print The last message
             // contact --> for which contact you want to print last message
             // return: a string of max 42 character + '...'            
-            printLastMessage(contact) {
-                let mexToPrint = this.lastMessage(contact, 'text');             
+            printLastMessage(index) {
+                let mexToPrint = this.lastMessage(index, 'text');    
+                return mexToPrint;        
                 if (mexToPrint.length <= 42) {                    
                     return mexToPrint;                    
                 } else {                    
@@ -149,10 +151,10 @@ var app = new Vue(
             },
             // To print last access for each contact:
             // I want the last acces to be the date of the last message received from a specific contact.
-            lastAccess() {
-                const contact = this.contacts[this.activeContactIndex];
-                const lastMessageStatus = this.lastMessage(contact, 'status');
-                const lastMessageDate = this.lastMessage(contact, 'date');
+            lastAccess(index) {
+                const contact = this.contacts[index];
+                const lastMessageStatus = this.lastMessage(index, 'status');
+                const lastMessageDate = this.lastMessage(index, 'date');
 
                 // If The last message is received, I return the date
                 if(lastMessageStatus != 'sent') {

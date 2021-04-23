@@ -81,7 +81,7 @@
                         <!-- Single Contact -->
                         <div v-for="(contact, index) in contacts" 
                         class="single-contact" 
-                        @click="showIndex(index); colourContact(index)" 
+                        @click="showIndex(index)" 
                         :class="{active : index == activeContactIndex}"
                         v-if="contacts[index].visible"
                         >
@@ -90,8 +90,9 @@
                             </div>
                             <div class="user-names-text">
                                 {{contact.name}}
-                                <div class="last-message">{{printLastMessage(contact)}}</div>
+                                <div class="last-message">{{printLastMessage(index)}}</div>                                
                             </div>
+                            <div class="last-acces">{{lastAccess(index)}}</div>
                             
                         </div>                                                 
         
@@ -113,7 +114,7 @@
                             </div>
                             <div class="text-container">
                                 <div class="user-names-text">{{contacts[activeContactIndex].name}}</div>
-                                <div class="last-acces">Ultimo accesso il {{lastAccess()}}</div>
+                                <div class="last-acces">Ultimo accesso il {{lastAccess(activeContactIndex)}}</div>
                             </div>                            
                         </div>
 
