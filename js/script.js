@@ -110,12 +110,14 @@ var app = new Vue(
                 this.contacts[index].onFocus = true;                                  
             },
             // To send a new message
-            sendMessage() {                
-                this.contacts[this.activeContactIndex].messages.push({
-                    date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
-                    text: this.newMessage,
-                    status: 'sent'
-                });
+            sendMessage() {    
+                if (this.newMessage.length > 0) {
+                    this.contacts[this.activeContactIndex].messages.push({
+                        date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+                        text: this.newMessage,
+                        status: 'sent'
+                    });
+                }                            
                 this.newMessage = '';
             },
             // To find contacts
@@ -141,7 +143,7 @@ var app = new Vue(
             // contact --> for which contact you want to print last message
             // return: a string of max 45 character + '...'            
             printLastMessage(contact) {
-                let mexToPrint = this.lastMessage(contact, 'text');                
+                let mexToPrint = this.lastMessage(contact, 'text');             
                 if (mexToPrint.length <= 45) {                    
                     return mexToPrint;                    
                 } else {                    
