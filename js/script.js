@@ -10,7 +10,6 @@ var app = new Vue(
                     name: 'Michele',
                     avatar: '_1',
                     visible: true,
-                    onFocus: true,
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -33,7 +32,6 @@ var app = new Vue(
                     name: 'Fabio',
                     avatar: '_2',
                     visible: true,
-                    onFocus: false,
                     messages: [
                         {
                             date: '20/03/2020 16:30:00',
@@ -56,7 +54,6 @@ var app = new Vue(
                     name: 'Samuele',
                     avatar: '_3',
                     visible: true,
-                    onFocus: false,
                     messages: [
                         {
                             date: '28/03/2020 10:10:40',
@@ -79,7 +76,6 @@ var app = new Vue(
                     name: 'Luisa',
                     avatar: '_4',
                     visible: true,
-                    onFocus: false,
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -99,16 +95,7 @@ var app = new Vue(
             // To pass the index to activeContactIndex and print images and messages
             showIndex(index) {
                 this.activeContactIndex = index;                                        
-            },
-            // To colour onclick the active contact via the property onFocus 
-            colourContact(index) {
-                // First all contacts has onFocus = false
-                this.contacts.forEach((element) => {                    
-                    element.onFocus = false;                                                              
-                });
-                // Then the current element has onFocus = true
-                this.contacts[index].onFocus = true;                                  
-            },
+            },           
             // To send a new message
             sendMessage() {    
                 if (this.newMessage.length > 0) {
@@ -141,13 +128,13 @@ var app = new Vue(
             },
             // To Print The last message
             // contact --> for which contact you want to print last message
-            // return: a string of max 45 character + '...'            
+            // return: a string of max 42 character + '...'            
             printLastMessage(contact) {
                 let mexToPrint = this.lastMessage(contact, 'text');             
-                if (mexToPrint.length <= 45) {                    
+                if (mexToPrint.length <= 42) {                    
                     return mexToPrint;                    
                 } else {                    
-                    return mexToPrint.slice(0, 45) + '...';
+                    return mexToPrint.slice(0, 42) + '...';
                 }
             },
             // To print last access for each contact:

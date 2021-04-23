@@ -63,10 +63,10 @@
                     <!-- Search Chat -->
                     <div class="search-chat">
                         <div class="search-container">
-                            <div class="search-icon">
+                            <label for="filter-contacts" class="search-icon">
                                 <i class="fas fa-search"></i>
-                            </div>
-                            <input type="text" 
+                            </label>
+                            <input id="filter-contacts" type="text" 
                             placeholder="Cerca o inizia una nuova chat"
                             v-model="searchQuery"
                             @keyup="findContact"
@@ -82,7 +82,7 @@
                         <div v-for="(contact, index) in contacts" 
                         class="single-contact" 
                         @click="showIndex(index); colourContact(index)" 
-                        :class="{active : contact.onFocus}"
+                        :class="{active : index == activeContactIndex}"
                         v-if="contacts[index].visible"
                         >
                             <div class="user-avatar">
@@ -113,7 +113,7 @@
                             </div>
                             <div class="text-container">
                                 <div class="user-names-text">{{contacts[activeContactIndex].name}}</div>
-                                <div class="last-acces">Ultimo accesso {{lastAccess()}}</div>
+                                <div class="last-acces">Ultimo accesso il {{lastAccess()}}</div>
                             </div>                            
                         </div>
 
@@ -134,7 +134,7 @@
                             <div 
                             v-for="message in contacts[activeContactIndex].messages" 
                             class="single-message" 
-                            :class="{'received' : message.status == 'received', 'sent' : message.status == 'sent'}"
+                            :class="message.status"
                             >
                                 <div class="text-message">
                                     {{message.text}}

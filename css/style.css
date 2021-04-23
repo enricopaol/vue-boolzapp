@@ -9,7 +9,7 @@ body {
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     image-rendering: -webkit-optimize-contrast;
-    min-width: 620px;
+    min-width: 820px;
 }
 
 .app-container {
@@ -25,7 +25,7 @@ body {
 .interface-container {
     width: 80%;
     height: 95%;
-    min-width: 600px;
+    min-width: 800px;
     background-color: #fff;
     display: flex;
 }
@@ -64,8 +64,11 @@ body {
 
 /* NAVIGATION LEFT */
 .nav-left {
-    width: 350px;
+    /* width: 350px; */
+    min-width: 320px;
+    width: 32%;
     height: 100%;
+    overflow-y: hidden;
 }
 
 /* User Name */
@@ -195,8 +198,10 @@ body {
 
 /* MAIN CONTENT (RIGHT) */
 .main-content {
-    width: calc( 100% - 350px);
+    /* width: calc( 100% - 350px); */
+    width: 68%;
     height: 100%;
+    overflow-y: hidden;
 }
 
 /* Contact Profile Top */
