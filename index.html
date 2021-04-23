@@ -85,14 +85,17 @@
                         :class="{active : index == activeContactIndex}"
                         v-if="contacts[index].visible"
                         >
-                            <div class="user-avatar">
-                                <img :src="'img/avatar' + contact.avatar + '.jpg'" :alt="'avatar' + contact.avatar">
+                            <div class="contact-active-container">
+                                <div class="user-avatar">
+                                    <img :src="'img/avatar' + contact.avatar + '.jpg'" :alt="'avatar' + contact.avatar">
+                                </div>
+                                <div class="user-names-text">
+                                    {{contact.name}}
+                                    <div class="last-message">{{printLastMessage(index)}}</div>                                
+                                </div>
+                                <div class="last-acces">{{lastAccess(index)}}</div>
                             </div>
-                            <div class="user-names-text">
-                                {{contact.name}}
-                                <div class="last-message">{{printLastMessage(index)}}</div>                                
-                            </div>
-                            <div class="last-acces">{{lastAccess(index)}}</div>
+                            
                             
                         </div>                                                 
         
