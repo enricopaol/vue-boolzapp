@@ -136,7 +136,7 @@
 
                             <!-- Single Message TEST (TODO: MOSTRARE MESSAGGI DIVERSI PER OGNI UTENTE CLICCATO) -->
                             <div 
-                            v-for="message in contacts[activeContactIndex].messages" 
+                            v-for="(message, index) in contacts[activeContactIndex].messages" 
                             class="single-message" 
                             :class="message.status"
                             >
@@ -144,6 +144,23 @@
                                     {{message.text}}
                                 </div>                            
                                 <span class="message-date">{{message.date}}</span>
+
+                                <div class="message-option-icon" @click="findMessageIndex(index)">
+                                    <i class="fas fa-chevron-down"></i>
+                                    <div class="message-options" 
+                                    :class="{active : contacts[activeContactIndex].currentMessageIndex == index}"
+                                    >
+                                        <ul>
+                                            <li>
+                                                <a href="#">Info messaggio</a>
+                                            </li>
+                                            <li>
+                                                <a @click="deleteMessage(index)" href="#">Cancella messaggio</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
                             </div>
 
                             
