@@ -3,6 +3,8 @@ var app = new Vue(
         el: '#root',
         data: {
             activeContactIndex: '0',
+            newMessage: '',
+            searchQuery: '',
             contacts: [
                 {
                     name: 'Michele',
@@ -37,7 +39,7 @@ var app = new Vue(
                             date: '20/03/2020 16:30:00',
                             text: 'Ciao come stai?',
                             status: 'sent'
-                        },
+                        },                        
                         {
                             date: '20/03/2020 16:30:55',
                             text: 'Bene grazie! Stasera ci vediamo?',
@@ -94,7 +96,7 @@ var app = new Vue(
             ]
         },
         methods: {
-            // To pass the index to activeContactIndex
+            // To pass the index to activeContactIndex and print images and messages
             showIndex(index) {
                 this.activeContactIndex = index;                                        
             },
@@ -106,7 +108,84 @@ var app = new Vue(
                 });
                 // Then the current element has onFocus = true
                 this.contacts[index].onFocus = true;                                  
+            },
+            // To send a new message
+            sendMessage() {                
+                this.contacts[this.activeContactIndex].messages.push({
+                    date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+                    text: this.newMessage,
+                    status: 'sent'
+                });
+                this.newMessage = '';
+            },
+            // To find contacts
+            findContact() {                
+                this.contacts.forEach((element) => {
+                    if(element.name.toLowerCase().includes(this.searchQuery.toLowerCase())) {
+                        element.visible = true;
+                    } else {
+                        element.visible = false;
+                    }
+                })
+            },
+            // To Find last message for each contact
+            // contact --> the contact of who you want to find the last message
+            // property --> is a String that represents which property of the object 
+            //              message do you want (date, text, status)
+            // return: a string representing the property of last message of that contact
+            lastMessage(contact, property) {                                               
+                let lastMex = contact.messages[contact.messages.length - 1][property];
+                return lastMex;                                               
+            },
+            // To Print The last message
+            // contact --> for which contact you want to print last message
+            // return: a string of max 45 character + '...'            
+            printLastMessage(contact) {
+                let mexToPrint = this.lastMessage(contact, 'text');                
+                if (mexToPrint.length <= 45) {                    
+                    return mexToPrint;                    
+                } else {                    
+                    return mexToPrint.slice(0, 45) + '...';
+                }
+            },
+            // To print last access for each contact:
+            // I want the last acces to be the date of the last message received from a specific contact.
+            lastAccess() {
+                const contact = this.contacts[this.activeContactIndex];
+                const lastMessageStatus = this.lastMessage(contact, 'status');
+                const lastMessageDate = this.lastMessage(contact, 'date');
+
+                // If The last message is received, I return the date
+                if(lastMessageStatus != 'sent') {
+                    return lastMessageDate;
+                } else {
+                    // Only If the last message is sent: 
+                    let lastMessageReceivedDate = function () {
+
+                        // I look for the date of last message received:
+                        // I go backward on the array of messages until i find a message received and I pick the date
+                        let dateLastMessage = '';
+                        let i = contact.messages.length - 1;
+                        let isMessageReceived = false;
+                        while(isMessageReceived == false && i > 0 ) {
+                            const thisMessageStatus = contact.messages[i].status;
+                            const thisMessageDate = contact.messages[i].date;
+                            
+                            if(thisMessageStatus == 'received') {
+                                isMessageReceived = true;
+                                dateLastMessage = thisMessageDate;
+                            }
+
+                            i--
+                        }
+                        return dateLastMessage;
+                    }() // <-- In this case, want to execute the function on the fly
+                    return lastMessageReceivedDate;
+                }
+
+                
             }
+            
         }
 
     }

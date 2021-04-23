@@ -66,7 +66,11 @@
                             <div class="search-icon">
                                 <i class="fas fa-search"></i>
                             </div>
-                            <input type="text" placeholder="Cerca o inizia una nuova chat">
+                            <input type="text" 
+                            placeholder="Cerca o inizia una nuova chat"
+                            v-model="searchQuery"
+                            @keyup="findContact"
+                            >
                         </div>                        
                     </div>
                     <!-- End Of Search Chat -->
@@ -75,11 +79,20 @@
                     <div class="contact-list">
 
                         <!-- Single Contact -->
-                        <div v-for="(contact, index) in contacts" class="single-contact" @click="showIndex(index); colourContact(index)" :class="{active : contact.onFocus}">
+                        <div v-for="(contact, index) in contacts" 
+                        class="single-contact" 
+                        @click="showIndex(index); colourContact(index)" 
+                        :class="{active : contact.onFocus}"
+                        v-if="contacts[index].visible"
+                        >
                             <div class="user-avatar">
                                 <img :src="'img/avatar' + contact.avatar + '.jpg'" :alt="'avatar' + contact.avatar">
                             </div>
-                            <div class="user-names-text">{{contact.name}}</div>
+                            <div class="user-names-text">
+                                {{contact.name}}
+                                <div class="last-message">{{printLastMessage(contact)}}</div>
+                            </div>
+                            
                         </div>                                                 
         
                     </div>
@@ -100,7 +113,7 @@
                             </div>
                             <div class="text-container">
                                 <div class="user-names-text">{{contacts[activeContactIndex].name}}</div>
-                                <div class="last-acces">Ultimo accesso oggi alle</div>
+                                <div class="last-acces">Ultimo accesso {{lastAccess()}}</div>
                             </div>                            
                         </div>
 
@@ -142,7 +155,11 @@
                             <i class="far fa-smile"></i>
                         </div>
 
-                        <input type="text" placeholder="Scrivi un messaggio">
+                        <input type="text" 
+                        placeholder="Scrivi un messaggio" 
+                        v-model="newMessage"
+                        @keyup.enter="sendMessage"
+                        >
 
                         <div class="microphone">
                             <i class="fas fa-microphone"></i>
@@ -162,6 +179,7 @@
     
 
     <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/script.js"></script>    
 </body>
 </html>
+
