@@ -138,7 +138,8 @@
                             <div 
                             v-for="(message, index) in contacts[activeContactIndex].messages" 
                             class="single-message" 
-                            :class="message.status"                           
+                            :class="message.status" 
+                            v-if="message.status == 'sent' || message.status == 'received'"                                                      
                             >
                                 <div class="text-message">
                                     {{message.text}}
@@ -162,9 +163,7 @@
                                     </div>
                                 
                             </div>
-
                             
-
                         </div>
                     </div>
                     <!-- End Of Messages Content -->

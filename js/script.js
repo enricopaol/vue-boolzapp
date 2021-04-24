@@ -291,9 +291,20 @@ var app = new Vue(
                 }
                                             
             },
-            deleteMessage(index) {                               
-                let thisContactMessages = this.contacts[this.activeContactIndex].messages;                  
-                thisContactMessages.splice(index, 1);                            
+            deleteMessage(index) {                                              
+                let thisContactMessages = this.contacts[this.activeContactIndex].messages;   
+                if(thisContactMessages.length > 1) {
+                    thisContactMessages.splice(index, 1);
+                } else {
+                    thisContactMessages.splice(index, 1);
+                    thisContactMessages.push({
+                        hasOptionsOpen: false,
+                        date: '',
+                        text: '',
+                        status: 'hide',
+                    })
+                }               
+                                            
             }            
             
         },
