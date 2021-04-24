@@ -170,35 +170,32 @@ var app = new Vue(
                 const lastMessageDate = this.lastMessage(index, 'date');
 
                 // If The last message is received, I return the date
-                if(lastMessageStatus != 'sent') {
-                    return lastMessageDate;
+                if(lastMessageStatus != 'sent') {                    
+                    return lastMessageDate;                    
                 } else {
                     // Only If the last message is sent: 
                     let lastMessageReceivedDate = function () {
 
                         // I look for the date of last message received:
                         // I go backward on the array of messages until i find a message received and I pick the date
-                        let dateLastMessage = '';
+                        let dateLastMessage = ''; // TODO: Prendi il valore che è stato salvato in data() dalla funzione deleteMessage(),                         
                         let i = contact.messages.length - 1;
                         let isMessageReceived = false;
-                        while(isMessageReceived == false && i > 0 ) {
+                        while(isMessageReceived == false && i >= 0 ) {
                             const thisMessageStatus = contact.messages[i].status;
                             const thisMessageDate = contact.messages[i].date;
                             
                             if(thisMessageStatus == 'received') {
                                 isMessageReceived = true;
-                                dateLastMessage = thisMessageDate;
+                                dateLastMessage = thisMessageDate;                                
                             }
 
                             i--
-                        }
-                        
+                        }                        
                         return dateLastMessage;
                     }                 
                     return lastMessageReceivedDate();
-                }
-
-                
+                }                
             },                
             openOptions(message) {
                 this.contacts[this.activeContactIndex].messages.forEach((element) => {
@@ -214,14 +211,12 @@ var app = new Vue(
                 }
                                             
             },
-            deleteMessage(index) {                
-                let thisContactMessages = this.contacts[this.activeContactIndex].messages; 
+            deleteMessage(index) {   
 
-                let newContactMessages = [
-                    ...thisContactMessages
-                ]
-
-                newContactMessages.splice(index, 1);  
+                // TODO:
+                // Prendi lo stato del messaggio con la funzione lastmessage(), se è 'received' salva l'ultimo accesso
+                // in una variabile vuota in data ( es: lastMessageReceivedDate).              
+                let thisContactMessages = this.contacts[this.activeContactIndex].messages;                  
                 thisContactMessages.splice(index, 1);
             }            
             
@@ -229,10 +224,3 @@ var app = new Vue(
 
     }
 );
-
-
-/* TODO:
-    - Ripensare alla maniera in cui vengono visualizzate le opzioni (toggle e su altri clic di icone) 
-    - destrutturare l'array e pensare a come non modificare l'ultimo accesso quando rimuovo
-      un messaggio
--*/ 
