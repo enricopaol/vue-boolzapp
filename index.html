@@ -93,7 +93,7 @@
                                     {{contact.name}}
                                     <div class="last-message">{{printLastMessage(index)}}</div>                                
                                 </div>
-                                <div class="last-acces">{{lastAccess(index)}}</div>
+                                <div class="last-message-date">{{lastMessageProperty(index, 'date')}}</div>
                             </div>
                             
                             
@@ -117,7 +117,7 @@
                             </div>
                             <div class="text-container">
                                 <div class="user-names-text">{{contacts[activeContactIndex].name}}</div>
-                                <div class="last-acces">Ultimo accesso il {{lastAccess(activeContactIndex)}}</div>
+                                <div class="last-access">Ultimo accesso il {{contacts[activeContactIndex].lastAccess}}</div>
                             </div>                            
                         </div>
 

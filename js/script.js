@@ -133,6 +133,8 @@ var app = new Vue(
                     text: 'ok',
                     status: 'received'
                 });
+                // I Refresh last Access
+                this.findLastAccess()
             },                      
             // To find contacts
             findContact() {                
@@ -144,12 +146,12 @@ var app = new Vue(
                     }
                 })
             },
-            // To Find last message for each contact
+            // To Find a property of last message for each contact
             // index --> the index of the contact you want to find the last message
             // property --> is a String that represents which property of the object 
-            //              'message' do you want (date, text, status)
+            //              'message' do you want (date, text, status, hasOptionOpen)
             // return: a string representing the property of last message of that contact
-            lastMessage(index, property) {  
+            lastMessageProperty(index, property) {  
                 let thisContact = this.contacts[index]                                         
                 let lastMex = thisContact.messages[thisContact.messages.length - 1][property];
                 return lastMex;                                               
@@ -158,44 +160,30 @@ var app = new Vue(
             // index --> the index of the contact you want to print the last message
             // return: a string that represents last message            
             printLastMessage(index) {
-                let mexToPrint = this.lastMessage(index, 'text');    
+                let mexToPrint = this.lastMessageProperty(index, 'text');    
                 return mexToPrint;                        
             },
             // To print last access for each contact:
-            // I want the last acces to be the date of the last message received from a specific contact.
-            // return: a string representing the date of last message received (== last access)
-            lastAccess(index) {
-                const contact = this.contacts[index];
-                const lastMessageStatus = this.lastMessage(index, 'status');
-                const lastMessageDate = this.lastMessage(index, 'date');
+            // I want the last acces to be the date of the last message received from a specific contact.            
+            // return: none --> This function refresh lastAccess property of contacts.
+            findLastAccess() {               
+                this.contacts.forEach((contact) => {                    
+                    let i = contact.messages.length - 1;
+                    let lastMessageReceivedDate = '';
+                    let isMessageReceived = false;
 
-                // If The last message is received, I return the date
-                if(lastMessageStatus != 'sent') {                    
-                    return lastMessageDate;                    
-                } else {
-                    // Only If the last message is sent: 
-                    let lastMessageReceivedDate = function () {
-
-                        // I look for the date of last message received:
-                        // I go backward on the array of messages until i find a message received and I pick the date
-                        let dateLastMessage = ''; // TODO: Prendi il valore che è stato salvato in data() dalla funzione deleteMessage(),                         
-                        let i = contact.messages.length - 1;
-                        let isMessageReceived = false;
-                        while(isMessageReceived == false && i >= 0 ) {
-                            const thisMessageStatus = contact.messages[i].status;
-                            const thisMessageDate = contact.messages[i].date;
+                    while(isMessageReceived == false && i >= 0) {
+                        let thisMessage = contact.messages[i];
+                        
+                        if(thisMessage.status == 'received') {                            
+                            isMessageReceived = true;
                             
-                            if(thisMessageStatus == 'received') {
-                                isMessageReceived = true;
-                                dateLastMessage = thisMessageDate;                                
-                            }
-
-                            i--
-                        }                        
-                        return dateLastMessage;
-                    }                 
-                    return lastMessageReceivedDate();
-                }                
+                            lastMessageReceivedDate = thisMessage.date
+                        }
+                        i--;
+                    }
+                    contact.lastAccess = lastMessageReceivedDate;
+                })                
             },                
             openOptions(message) {
                 this.contacts[this.activeContactIndex].messages.forEach((element) => {
@@ -211,15 +199,14 @@ var app = new Vue(
                 }
                                             
             },
-            deleteMessage(index) {   
-
-                // TODO:
-                // Prendi lo stato del messaggio con la funzione lastmessage(), se è 'received' salva l'ultimo accesso
-                // in una variabile vuota in data ( es: lastMessageReceivedDate).              
+            deleteMessage(index) {                               
                 let thisContactMessages = this.contacts[this.activeContactIndex].messages;                  
-                thisContactMessages.splice(index, 1);
+                thisContactMessages.splice(index, 1);                            
             }            
             
+        },
+        created() {
+            this.findLastAccess()
         }
 
     }
