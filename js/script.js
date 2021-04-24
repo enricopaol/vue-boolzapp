@@ -14,19 +14,19 @@ var app = new Vue(
                     messages: [                        
                         {
                             hasOptionsOpen: false,
-                            date: '10/01/2020 15:30:55',
+                            date: '10/01/2020 15:30',
                             text: 'Hai portato a spasso il cane?',
                             status: 'sent',
                         },
                         {
                             hasOptionsOpen: false,
-                            date: '10/01/2020 15:50:00',
+                            date: '10/01/2020 15:50',
                             text: 'Ricordati di dargli da mangiare',
                             status: 'sent',
                         },
                         {
                             hasOptionsOpen: false,
-                            date: '10/01/2020 16:15:22',
+                            date: '10/01/2020 16:15',
                             text: 'Tutto fatto!',
                             status: 'received',
                         }
@@ -40,19 +40,19 @@ var app = new Vue(
                     messages: [
                         {
                             hasOptionsOpen: false,
-                            date: '20/03/2020 16:30:00',
+                            date: '20/03/2020 16:30',
                             text: 'Ciao come stai?',
                             status: 'sent',
                         },                        
                         {
                             hasOptionsOpen: false,
-                            date: '20/03/2020 16:30:55',
+                            date: '20/03/2020 16:30',
                             text: 'Bene grazie! Stasera ci vediamo?',
                             status: 'received',                            
                         },
                         {
                             hasOptionsOpen: false,
-                            date: '20/03/2020 16:35:00',
+                            date: '20/03/2020 16:35',
                             text: 'Mi piacerebbe ma devo andare a fare la spesa.',
                             status: 'sent',
                         }
@@ -66,44 +66,136 @@ var app = new Vue(
                     messages: [
                         {
                             hasOptionsOpen: false,
-                            date: '28/03/2020 10:10:40',
+                            date: '28/03/2020 10:10',
                             text: 'La Marianna va in campagna',
                             status: 'received',
                         },
                         {
                             hasOptionsOpen: false,
-                            date: '28/03/2020 10:20:10',
+                            date: '28/03/2020 10:20',
                             text: 'Sicuro di non aver sbagliato chat?',
                             status: 'sent',
                         },
                         {
                             hasOptionsOpen: false,
-                            date: '28/03/2020 16:15:22',
+                            date: '28/03/2020 16:15',
                             text: 'Ah scusa!',
                             status: 'received',
                         }
                     ],
                 },
                 {
-                    name: 'Luisa',
+                    name: 'Irene',
                     avatar: '_4',
                     visible: true,
                     lastAccess: '',
                     messages: [
                         {
                             hasOptionsOpen: false,
-                            date: '10/01/2020 15:30:55',
+                            date: '10/01/2020 15:30',
                             text: 'Lo sai che ha aperto una nuova pizzeria?',
                             status: 'sent',
                         },
                         {
                             hasOptionsOpen: false,
-                            date: '10/01/2020 15:50:00',
+                            date: '10/01/2020 15:50',
                             text: 'Si, ma preferirei andare al cinema',
                             status: 'received',        
                         }
                     ],
                 },
+                {
+                    name: 'Mattia',
+                    avatar: '_5',
+                    visible: true,
+                    lastAccess: '',
+                    messages: [
+                        {
+                            hasOptionsOpen: false,
+                            date: '10/01/2020 19:10',
+                            text: 'Domani andiamo a giocare a pallone con Francesco',
+                            status: 'received',
+                        },
+                        {
+                            hasOptionsOpen: false,
+                            date: '10/01/2020 19:50',
+                            text: 'Si alle 18 che prima ho lezione',
+                            status: 'sent',        
+                        },
+                        {
+                            hasOptionsOpen: false,
+                            date: '10/01/2020 15:30',
+                            text: 'Ok!',
+                            status: 'received',
+                        }
+                    ],
+                },
+                {
+                    name: 'Luisa',
+                    avatar: '_6',
+                    visible: true,
+                    lastAccess: '',
+                    messages: [
+                        {
+                            hasOptionsOpen: false,
+                            date: '10/01/2020 15:30',
+                            text: 'Ciao Luisa, hai preso appunti alla lezione di ieri?',
+                            status: 'sent',
+                        },
+                        {
+                            hasOptionsOpen: false,
+                            date: '10/01/2020 15:50',
+                            text: 'Si, quando arrivo a casa te li mando',
+                            status: 'received',        
+                        },
+                        {
+                            hasOptionsOpen: false,
+                            date: '10/01/2020 15:50',
+                            text: 'Grazie!',
+                            status: 'sent',        
+                        }
+                    ],
+                },
+                {
+                    name: 'Francesco',
+                    avatar: '_7',
+                    visible: true,
+                    lastAccess: '',
+                    messages: [
+                        {
+                            hasOptionsOpen: false,
+                            date: '10/01/2020 15:30',
+                            text: 'Ci sei per andare al campetto domani?',
+                            status: 'sent',
+                        },
+                        {
+                            hasOptionsOpen: false,
+                            date: '10/01/2020 15:50',
+                            text: 'Si',
+                            status: 'received',        
+                        }
+                    ],
+                },
+                {
+                    name: 'Gabriele',
+                    avatar: '_8',
+                    visible: true,
+                    lastAccess: '',
+                    messages: [
+                        {
+                            hasOptionsOpen: false,
+                            date: '10/01/2020 15:30',
+                            text: 'Ciao, hai gli appunti della lezione di oggi?',
+                            status: 'received',
+                        },
+                        {
+                            hasOptionsOpen: false,
+                            date: '10/01/2020 15:50',
+                            text: 'Eh no! Dopo provo a chiedere a Luisa',
+                            status: 'sent',        
+                        }
+                    ],
+                }
             ]
         },
         methods: {
