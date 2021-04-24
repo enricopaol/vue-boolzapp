@@ -134,21 +134,22 @@
                     <div class="messages-content">                        
                         <div class="messages-content-container">
 
-                            <!-- Single Message TEST (TODO: MOSTRARE MESSAGGI DIVERSI PER OGNI UTENTE CLICCATO) -->
+                            <!-- Single Message -->
                             <div 
                             v-for="(message, index) in contacts[activeContactIndex].messages" 
                             class="single-message" 
-                            :class="message.status"
+                            :class="message.status"                           
                             >
                                 <div class="text-message">
                                     {{message.text}}
                                 </div>                            
                                 <span class="message-date">{{message.date}}</span>
 
-                                <div class="message-option-icon" @click="findMessageIndex(index)">
-                                    <i class="fas fa-chevron-down"></i>
-                                    <div class="message-options" 
-                                    :class="{active : contacts[activeContactIndex].currentMessageIndex == index}"
+                                <div class="message-option-icon" @click="openOptions(message)">
+                                    <i class="fas fa-chevron-down"></i>                                    
+                                </div>
+                                <div class="message-options" 
+                                    v-if="contacts[activeContactIndex].messages[index].hasOptionsOpen"
                                     >
                                         <ul>
                                             <li>
@@ -159,7 +160,6 @@
                                             </li>
                                         </ul>
                                     </div>
-                                </div>
                                 
                             </div>
 
