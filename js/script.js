@@ -348,14 +348,7 @@ var app = new Vue(
                                             
             },
             showMessageInfo(index) {
-                let messageInfoOpen = this.contacts[this.activeContactIndex].messages[index].hasInfoOpen;
-
-                if (messageInfoOpen == false) {
-                    this.contacts[this.activeContactIndex].messages[index].hasInfoOpen = true;
-                } else {
-                    this.contacts[this.activeContactIndex].messages[index].hasInfoOpen = false;
-                }
-
+                this.contacts[this.activeContactIndex].messages[index].hasInfoOpen = !this.contacts[this.activeContactIndex].messages[index].hasInfoOpen;                
                 this.contacts[this.activeContactIndex].messages[index].hasOptionsOpen = false
             }            
             

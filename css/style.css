@@ -295,7 +295,9 @@ body {
     width: 40%;
     height: 200px;
     background-color: #fff;
-    z-index: 999;        
+    z-index: 999;     
+    font-weight: 500;   
+    font-size: 14px;
 }
 
 .message-info .header-info {
@@ -303,19 +305,21 @@ body {
     justify-content: space-between;
     border-bottom: 1px solid #b1b1b1;
     padding: 15px;
+    background-color: rgb(0,149,135);
+    color: #fff;
 }
 .message-info .header-info .exit-icon {
-    color: #b1b1b1;
+    color: #fff;
     cursor: pointer;
 }
 
 .message-info ul {
     list-style-type: none;
     padding: 15px;
+    background-color: #fff;
 }
 
 .message-info ul li {
-    font-size: 14px;
     margin-bottom: 15px;
 }
 
@@ -329,18 +333,17 @@ body {
 
 .messages-content .single-message {
     font-size: 14px;
-    font-weight: 400;
-    
+    font-weight: 400;    
     border-radius: 10px;
     min-width: 25%;
     max-width: 55%;
-    display: flex;
-    flex-direction: column;
     margin-bottom: 20px;
 }
-.text-message-container {
+.messages-content .single-message .text-message-container {
     position: relative;
     padding: 8px 12px 7px;
+    display: flex;
+    flex-direction: column;
 }
 .messages-content .single-message.received {
     background-color: #fff;
