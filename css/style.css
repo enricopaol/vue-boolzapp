@@ -267,7 +267,7 @@ body {
     overflow-y: auto;    
 }
 .messages-content .messages-content-container {
-    padding: 60px 70px;
+    padding: 80px 70px;
     display: flex;
     flex-direction: column;
 }

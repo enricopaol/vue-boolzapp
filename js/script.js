@@ -208,20 +208,29 @@ var app = new Vue(
                 if (this.newMessage.length > 0) {
                     this.contacts[this.activeContactIndex].messages.push({
                         hasOptionsOpen: false,
-                        date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+                        date: dayjs().format('DD/MM/YYYY HH:mm'),
                         text: this.newMessage,
                         status: 'sent',                        
                     });
-                }                            
-                this.newMessage = '';
 
-                // I call the function Autorespond after 1s
-                setTimeout(this.autorespond, 1000)
+                    // I call the function Autorespond after 1s
+                    setTimeout(this.autorespond, 1000)
+
+                    // Everytime I send a new message, I filter the array of messages to remove
+                    // the empty pseudomessage that I push when deleting the last message
+                    this.contacts[this.activeContactIndex].visible = true;
+                    let newcontactMessages = this.contacts[this.activeContactIndex].messages.filter((message) => {
+                        return message.status != 'hide';
+                    })
+
+                    this.contacts[this.activeContactIndex].messages = newcontactMessages
+                }                            
+                this.newMessage = '';                                
             },
             autorespond() {
                 this.contacts[this.activeContactIndex].messages.push({
                     hasOptionsOpen: false,
-                    date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+                    date: dayjs().format('DD/MM/YYYY HH:mm'),
                     text: 'ok',
                     status: 'received'
                 });
@@ -229,12 +238,17 @@ var app = new Vue(
                 this.findLastAccess()
             },                      
             // To find contacts
-            findContact() {                
-                this.contacts.forEach((element) => {
-                    if(element.name.toLowerCase().includes(this.searchQuery.toLowerCase())) {
-                        element.visible = true;
-                    } else {
-                        element.visible = false;
+            findContact() {                                              
+                this.contacts.forEach((element, index) => {                                        
+                    if(element.name.toLowerCase().includes(this.searchQuery.toLowerCase())) {                            
+                        if(this.searchQuery == '' && this.lastMessageProperty(index, 'text') == '') {
+                            element.visible = false;
+                        } else {
+                            element.visible = true
+                        }                                                                  
+                                                
+                    } else {                        
+                        element.visible = false;                                            
                     }
                 })
             },
@@ -293,9 +307,13 @@ var app = new Vue(
             },
             deleteMessage(index) {                                              
                 let thisContactMessages = this.contacts[this.activeContactIndex].messages;   
+                                                                
                 if(thisContactMessages.length > 1) {
                     thisContactMessages.splice(index, 1);
                 } else {
+
+                    this.contacts[this.activeContactIndex].visible = false;
+
                     thisContactMessages.splice(index, 1);
                     thisContactMessages.push({
                         hasOptionsOpen: false,
