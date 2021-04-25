@@ -13,18 +13,21 @@ var app = new Vue(
                     lastAccess: '',
                     messages: [                        
                         {
+                            hasInfoOpen: false,
                             hasOptionsOpen: false,
                             date: '10/01/2020 15:30',
                             text: 'Hai portato a spasso il cane?',
                             status: 'sent',
                         },
                         {
+                            hasInfoOpen: false,
                             hasOptionsOpen: false,
                             date: '10/01/2020 15:50',
                             text: 'Ricordati di dargli da mangiare',
                             status: 'sent',
                         },
                         {
+                            hasInfoOpen: false,
                             hasOptionsOpen: false,
                             date: '10/01/2020 16:15',
                             text: 'Tutto fatto!',
@@ -39,18 +42,21 @@ var app = new Vue(
                     lastAccess: '',
                     messages: [
                         {
+                            hasInfoOpen: false,
                             hasOptionsOpen: false,
                             date: '20/03/2020 16:30',
                             text: 'Ciao come stai?',
                             status: 'sent',
                         },                        
                         {
+                            hasInfoOpen: false,
                             hasOptionsOpen: false,
                             date: '20/03/2020 16:30',
                             text: 'Bene grazie! Stasera ci vediamo?',
                             status: 'received',                            
                         },
                         {
+                            hasInfoOpen: false,
                             hasOptionsOpen: false,
                             date: '20/03/2020 16:35',
                             text: 'Mi piacerebbe ma devo andare a fare la spesa.',
@@ -65,18 +71,21 @@ var app = new Vue(
                     lastAccess: '',
                     messages: [
                         {
+                            hasInfoOpen: false,
                             hasOptionsOpen: false,
                             date: '28/03/2020 10:10',
                             text: 'La Marianna va in campagna',
                             status: 'received',
                         },
                         {
+                            hasInfoOpen: false,
                             hasOptionsOpen: false,
                             date: '28/03/2020 10:20',
                             text: 'Sicuro di non aver sbagliato chat?',
                             status: 'sent',
                         },
                         {
+                            hasInfoOpen: false,
                             hasOptionsOpen: false,
                             date: '28/03/2020 16:15',
                             text: 'Ah scusa!',
@@ -91,12 +100,14 @@ var app = new Vue(
                     lastAccess: '',
                     messages: [
                         {
+                            hasInfoOpen: false,
                             hasOptionsOpen: false,
                             date: '10/01/2020 15:30',
                             text: 'Lo sai che ha aperto una nuova pizzeria?',
                             status: 'sent',
                         },
                         {
+                            hasInfoOpen: false,
                             hasOptionsOpen: false,
                             date: '10/01/2020 15:50',
                             text: 'Si, ma preferirei andare al cinema',
@@ -111,18 +122,21 @@ var app = new Vue(
                     lastAccess: '',
                     messages: [
                         {
+                            hasInfoOpen: false,
                             hasOptionsOpen: false,
                             date: '10/01/2020 19:10',
                             text: 'Domani andiamo a giocare a pallone con Francesco',
                             status: 'received',
                         },
                         {
+                            hasInfoOpen: false,
                             hasOptionsOpen: false,
                             date: '10/01/2020 19:50',
                             text: 'Si alle 18 che prima ho lezione',
                             status: 'sent',        
                         },
                         {
+                            hasInfoOpen: false,
                             hasOptionsOpen: false,
                             date: '10/01/2020 15:30',
                             text: 'Ok!',
@@ -137,18 +151,21 @@ var app = new Vue(
                     lastAccess: '',
                     messages: [
                         {
+                            hasInfoOpen: false,
                             hasOptionsOpen: false,
                             date: '10/01/2020 15:30',
                             text: 'Ciao Luisa, hai preso appunti alla lezione di ieri?',
                             status: 'sent',
                         },
                         {
+                            hasInfoOpen: false,
                             hasOptionsOpen: false,
                             date: '10/01/2020 15:50',
                             text: 'Si, quando arrivo a casa te li mando',
                             status: 'received',        
                         },
                         {
+                            hasInfoOpen: false,
                             hasOptionsOpen: false,
                             date: '10/01/2020 15:50',
                             text: 'Grazie!',
@@ -163,12 +180,14 @@ var app = new Vue(
                     lastAccess: '',
                     messages: [
                         {
+                            hasInfoOpen: false,
                             hasOptionsOpen: false,
                             date: '10/01/2020 15:30',
                             text: 'Ci sei per andare al campetto domani?',
                             status: 'sent',
                         },
                         {
+                            hasInfoOpen: false,
                             hasOptionsOpen: false,
                             date: '10/01/2020 15:50',
                             text: 'Si',
@@ -183,12 +202,14 @@ var app = new Vue(
                     lastAccess: '',
                     messages: [
                         {
+                            hasInfoOpen: false,
                             hasOptionsOpen: false,
                             date: '10/01/2020 15:30',
                             text: 'Ciao, hai gli appunti della lezione di oggi?',
                             status: 'received',
                         },
                         {
+                            hasInfoOpen: false,
                             hasOptionsOpen: false,
                             date: '10/01/2020 15:50',
                             text: 'Eh no! Dopo provo a chiedere a Luisa',
@@ -207,6 +228,7 @@ var app = new Vue(
             sendMessage() {    
                 if (this.newMessage.length > 0) {
                     this.contacts[this.activeContactIndex].messages.push({
+                        hasInfoOpen: false,
                         hasOptionsOpen: false,
                         date: dayjs().format('DD/MM/YYYY HH:mm'),
                         text: this.newMessage,
@@ -229,6 +251,7 @@ var app = new Vue(
             },
             autorespond() {
                 this.contacts[this.activeContactIndex].messages.push({
+                    hasInfoOpen: false,
                     hasOptionsOpen: false,
                     date: dayjs().format('DD/MM/YYYY HH:mm'),
                     text: 'ok',
@@ -323,6 +346,17 @@ var app = new Vue(
                     })
                 }               
                                             
+            },
+            showMessageInfo(index) {
+                let messageInfoOpen = this.contacts[this.activeContactIndex].messages[index].hasInfoOpen;
+
+                if (messageInfoOpen == false) {
+                    this.contacts[this.activeContactIndex].messages[index].hasInfoOpen = true;
+                } else {
+                    this.contacts[this.activeContactIndex].messages[index].hasInfoOpen = false;
+                }
+
+                this.contacts[this.activeContactIndex].messages[index].hasOptionsOpen = false
             }            
             
         },

@@ -96,8 +96,10 @@
                                             <svg viewBox="0 0 16 15" width="16" height="15">
                                                 <path d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.365.365 0 0 0-.063-.51z"></path>
                                             </svg>
-                                        </span>
-                                        {{printLastMessage(index)}}
+                                        </span>          
+                                        <span>
+                                            {{printLastMessage(index)}}
+                                        </span>                                                                      
                                     </div>                                                                    
                                 </div>
                                 <div class="last-message-date">{{lastMessageProperty(index, 'date')}}</div>
@@ -138,8 +140,11 @@
                     <!-- End Contact Profile Top -->
 
                     <!-- Messages Content -->
-                    <div class="messages-content">                        
-                        <div class="messages-content-container">
+                    <div class="messages-content">  
+                        
+                                    
+
+                        <div class="messages-content-container">                                                        
 
                             <!-- Single Message -->
                             <div 
@@ -148,31 +153,66 @@
                             :class="message.status" 
                             v-if="message.status == 'sent' || message.status == 'received'"                                                      
                             >
-                                <div class="text-message">
-                                    {{message.text}}
-                                </div>                            
-                                <span class="message-date">{{message.date}} 
-                                    <span class="double-check" v-if="message.status == 'sent'">
-                                        <svg viewBox="0 0 16 15" width="16" height="15">
-                                            <path d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.365.365 0 0 0-.063-.51z"></path>
-                                        </svg>
-                                    </span>
+                                <!-- Messages Info Container -->
+                                <div v-if="message.hasInfoOpen" class="message-info-container">
+                                    <div class="message-info">
+                                        <div class=header-info>
 
-                                <div class="message-option-icon" @click="openOptions(message)">
-                                    <i class="fas fa-chevron-down"></i>                                    
+                                            <div class="title">
+                                                Info Messaggio
+                                            </div>
+
+                                            <div @click="showMessageInfo(index)" class="exit-icon">
+                                                <i class="fas fa-times"></i>
+                                            </div>
+
+                                        </div>
+
+                                        <ul>
+                                            <li>
+                                                Data: {{message.date}}
+                                            </li>
+                                            <li>
+                                                Testo: "{{message.text}}"
+                                            </li>
+                                            <li>
+                                                Stato: {{message.status}}
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="message-options" 
+
+                                <!-- Text Message Container -->
+                                <div class="text-message-container">
+
+                                    <div class="text-message">
+                                        {{message.text}}
+                                    </div>                            
+                                    <span class="message-date">
+                                        <span>{{message.date}}</span> 
+                                        <span class="double-check" v-if="message.status == 'sent'">
+                                            <svg viewBox="0 0 16 15" width="16" height="15">
+                                                <path d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.365.365 0 0 0-.063-.51z"></path>
+                                            </svg>
+                                        </span>
+    
+                                    <div class="message-option-icon" @click="openOptions(message)">
+                                        <i class="fas fa-chevron-down"></i>                                    
+                                    </div>
+                                    <div class="message-options" 
                                     v-if="contacts[activeContactIndex].messages[index].hasOptionsOpen"
                                     >
                                         <ul>
                                             <li>
-                                                <a href="#">Info messaggio</a>
+                                                <a @click="showMessageInfo(index)" href="#">Info messaggio</a>
                                             </li>
                                             <li>
                                                 <a @click="deleteMessage(index)" href="#">Cancella messaggio</a>
                                             </li>
                                         </ul>
                                     </div>
+                                </div>
+                                
                                 
                             </div>
                             
