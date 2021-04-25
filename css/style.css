@@ -70,6 +70,13 @@ body {
     margin-top: 3px;
 }
 
+.double-check {
+    vertical-align: middle;
+}
+.double-check svg {
+    fill: #2ab5eb;
+}
+
 /* NAVIGATION LEFT */
 .nav-left {
     /* width: 350px; */
@@ -187,6 +194,7 @@ body {
     position: relative;
     overflow-x: hidden;
 }
+
 .contact-list .single-contact:first-child {
     border-top: none;
 }
@@ -292,6 +300,7 @@ body {
     align-self: flex-end;
 }
 
+
 .messages-content .single-message .text-message {
     padding: 5px 20px 5px 0;
     word-wrap: break-word;
@@ -340,6 +349,7 @@ body {
     width: 100%;
     padding: 20px;
     white-space: nowrap;
+    font-size: 14px;
 }
 .message-options ul li a:hover {
     background-color: #e9ebeb67;

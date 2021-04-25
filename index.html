@@ -91,7 +91,14 @@
                                 </div>
                                 <div class="user-names-text">
                                     {{contact.name}}
-                                    <div class="last-message">{{printLastMessage(index)}}</div>                                
+                                    <div class="last-message">
+                                        <span class="double-check" v-if="lastMessageProperty(index, 'status') == 'sent'">
+                                            <svg viewBox="0 0 16 15" width="16" height="15">
+                                                <path d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.365.365 0 0 0-.063-.51z"></path>
+                                            </svg>
+                                        </span>
+                                        {{printLastMessage(index)}}
+                                    </div>                                                                    
                                 </div>
                                 <div class="last-message-date">{{lastMessageProperty(index, 'date')}}</div>
                             </div>
@@ -144,7 +151,12 @@
                                 <div class="text-message">
                                     {{message.text}}
                                 </div>                            
-                                <span class="message-date">{{message.date}}</span>
+                                <span class="message-date">{{message.date}} 
+                                    <span class="double-check" v-if="message.status == 'sent'">
+                                        <svg viewBox="0 0 16 15" width="16" height="15">
+                                            <path d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.365.365 0 0 0-.063-.51z"></path>
+                                        </svg>
+                                    </span>
 
                                 <div class="message-option-icon" @click="openOptions(message)">
                                     <i class="fas fa-chevron-down"></i>                                    
